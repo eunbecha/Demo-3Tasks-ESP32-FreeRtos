@@ -9,5 +9,6 @@
     "--query-driver=C:\\Users\\Frankie\\.espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20241119\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
     "--compile-commands-dir=c:\\Users\\Frankie\\esp\\BlakeI2C\\Demo-3Tasks-ESP32-FreeRtos\\build"
   ],
-  "idf.flashType": "UART"
+  "idf.flashType": "UART",
+  "idf.currentSetup": "/Users/eunbecha/esp/v5.3.1/esp-idf"
 }

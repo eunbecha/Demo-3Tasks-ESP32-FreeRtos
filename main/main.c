@@ -25,6 +25,8 @@
 #include "timer_Photo.h"
 #include "state_machine.h"
 
+#include "bio-impedance_task.h"
+
 
 //
 //  Blake's demo of multiple FreeRTOS tasks
@@ -54,11 +56,13 @@
 
 #define LED_TASK            TASK_ON
 #define LCD_TASK            TASK_OFF
-#define STATE_MACHINE       TASK_ON     // PHOTONIC TASK now timer driven by this
+#define STATE_MACHINE       TASK_OFF     // PHOTONIC TASK now timer driven by this
 #define PHOTONIC_TASK       TASK_OFF
-#define HELLO_WORLD_TASK    TASK_OFF
+#define HELLO_WORLD_TASK    TASK_ON
 #define PHOTONICS_TEST      TASK_OFF
 #define CPU_LOAD_TASK       TASK_OFF
+
+#define BIO_IMPEDANCE_TASK  TASK_ON
 
 
 // LED Task related functions (in this file)
@@ -336,6 +340,22 @@ void app_main(void)
         /* Set the GPIO as a push/pull output */
         gpio_set_direction(IDLE_GPIO, GPIO_MODE_OUTPUT);
     }
+    if (BIO_IMPEDANCE_TASK == TASK_ON) {
+
+        xTaskCreatePinnedToCore(
+            bio_impedance_task,
+            "Bio Impedance Task",
+            DEFAULT_STACK,
+            NULL,
+            TASK_PRIO_2,
+            NULL,
+            tskNO_AFFINITY
+        );
+
+        ESP_LOGI(TAG, "Bio impedance task created");
+    }
+
+
 
     /***********************************************************************
      *
