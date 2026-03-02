@@ -25,7 +25,7 @@
 #include "timer_Photo.h"
 #include "state_machine.h"
 
-#include "bio-impedance_task.h"
+#include "bio_impedance_task.h"
 
 
 //
@@ -343,7 +343,7 @@ void app_main(void)
     if (BIO_IMPEDANCE_TASK == TASK_ON) {
 
         xTaskCreatePinnedToCore(
-            bio_impedance_task,
+            BIOIMP_task,
             "Bio Impedance Task",
             DEFAULT_STACK,
             NULL,
